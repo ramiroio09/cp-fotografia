@@ -1,0 +1,1418 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f2eafb">
+<meta name="description" content="CP Fotografía — Celeste Pérez. Fotografía y filmmaker en Cinco Saltos, Río Negro.">
+<title>CP Fotografía | Celeste Pérez</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --fondo: #f8f4fc;
+  --lila: #e9ddf7;
+  --lila-2: #d9c4f0;
+  --violeta: #77549c;
+  --violeta-oscuro: #4e356c;
+  --texto: #40344a;
+  --suave: #81748b;
+  --blanco: #fffdfd;
+  --borde: #e8dff0;
+  --radio: 24px;
+  --sombra: 0 15px 45px rgba(94, 62, 125, .09);
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+body.menu-abierto { overflow: hidden; }
+
+a { color: inherit; text-decoration: none; }
+
+button { font: inherit; }
+
+::selection {
+  background: var(--lila-2);
+  color: var(--violeta-oscuro);
+}
+
+.decoracion {
+  position: absolute;
+  color: var(--violeta);
+  opacity: .55;
+  pointer-events: none;
+  font-family: 'Caveat', cursive;
+  user-select: none;
+}
+
+.contenedor {
+  width: min(1160px, calc(100% - 48px));
+  margin-inline: auto;
+}
+
+.etiqueta {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--violeta);
+  text-transform: uppercase;
+  font-size: .72rem;
+  letter-spacing: .17em;
+  font-weight: 700;
+}
+
+.etiqueta::before {
+  content: '';
+  width: 25px;
+  height: 1px;
+  background: currentColor;
+}
+
+h1, h2, h3, p { margin-top: 0; }
+
+h1, h2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 500;
+  letter-spacing: -.035em;
+}
+
+h2 {
+  font-size: clamp(2.3rem, 5vw, 4rem);
+  line-height: 1.08;
+  margin-bottom: 18px;
+}
+
+h2 em, h1 em {
+  color: var(--violeta);
+  font-weight: 500;
+}
+
+.texto-manuscrito {
+  font-family: 'Caveat', cursive;
+  font-weight: 500;
+  color: var(--violeta);
+}
+
+.subtitulo {
+  color: var(--suave);
+  line-height: 1.85;
+  max-width: 570px;
+}
+
+.boton {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  min-height: 49px;
+  padding: 0 23px;
+  border-radius: 100px;
+  border: 1px solid var(--violeta);
+  background: var(--violeta);
+  color: white;
+  font-size: .88rem;
+  font-weight: 600;
+  transition: .25s ease;
+  cursor: pointer;
+}
+
+.boton:hover {
+  transform: translateY(-3px);
+  background: var(--violeta-oscuro);
+  box-shadow: 0 10px 25px #77549c30;
+}
+
+.boton.secundario {
+  color: var(--violeta);
+  background: transparent;
+}
+
+.boton.secundario:hover {
+  background: var(--lila);
+}
+
+/* NAVEGACIÓN */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(248, 244, 252, .88);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(119, 84, 156, .10);
+}
+
+.nav {
+  min-height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  flex-shrink: 0;
+}
+
+.marca-monograma {
+  width: 43px;
+  height: 43px;
+  border: 1px solid var(--violeta);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-family: 'Playfair Display', serif;
+  color: var(--violeta);
+  font-size: 1.08rem;
+  font-style: italic;
+}
+
+.marca-texto strong {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.04rem;
+  font-weight: 600;
+  letter-spacing: .03em;
+}
+
+.marca-texto small {
+  color: var(--suave);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: clamp(15px, 2.2vw, 30px);
+}
+
+.nav-links a {
+  font-size: .8rem;
+  color: #685b71;
+  transition: color .2s;
+}
+
+.nav-links a:hover { color: var(--violeta); }
+
+.nav-links .nav-cta {
+  border: 1px solid var(--borde);
+  padding: 11px 17px;
+  border-radius: 100px;
+  color: var(--violeta);
+}
+
+.menu-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--borde);
+  border-radius: 50%;
+  background: white;
+  color: var(--violeta);
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+/* PORTADA */
+
+.hero {
+  min-height: 690px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 50px;
+  padding-block: 75px 95px;
+  position: relative;
+}
+
+.hero-texto { position: relative; z-index: 2; }
+
+.hero .etiqueta { margin-bottom: 26px; }
+
+.hero h1 {
+  font-size: clamp(3.7rem, 7vw, 6.4rem);
+  line-height: .99;
+  margin-bottom: 25px;
+}
+
+.hero h1 .nombre {
+  display: block;
+  font-style: italic;
+  color: var(--violeta);
+}
+
+.hero-descripcion {
+  max-width: 420px;
+  line-height: 1.9;
+  color: var(--suave);
+  font-size: .98rem;
+  margin-bottom: 30px;
+}
+
+.hero-botones {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.hero-firma {
+  margin-top: 30px;
+  font-size: 1.65rem;
+  transform: rotate(-5deg);
+  display: inline-block;
+}
+
+.hero-visual {
+  position: relative;
+  min-height: 490px;
+  display: grid;
+  place-items: center;
+}
+
+.marco-principal {
+  position: relative;
+  width: min(100%, 450px);
+  height: 485px;
+  border-radius: 220px 220px 24px 24px;
+  background:
+    radial-gradient(ellipse at 30% 22%, #fffdfd 0, transparent 35%),
+    linear-gradient(145deg, #e5d5f3, #cbb2e4 58%, #f2e7fa);
+  border: 9px solid var(--blanco);
+  box-shadow: var(--sombra);
+  overflow: hidden;
+}
+
+.marco-principal::before {
+  content: '';
+  position: absolute;
+  inset: 17px;
+  border: 1px solid #ffffff9c;
+  border-radius: 210px 210px 17px 17px;
+}
+
+.portada-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 35px;
+  color: var(--violeta);
+}
+
+.portada-placeholder .camara-icono { font-size: 3.5rem; }
+
+.portada-placeholder strong {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-top: 14px;
+}
+
+.portada-placeholder span {
+  margin-top: 9px;
+  max-width: 210px;
+  line-height: 1.7;
+  font-size: .76rem;
+  color: #806b95;
+}
+
+.sticker {
+  position: absolute;
+  z-index: 2;
+  width: 116px;
+  height: 116px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background: #fffdf5;
+  border-radius: 50%;
+  box-shadow: var(--sombra);
+  color: var(--violeta);
+  font-family: 'Caveat', cursive;
+  font-size: 1.35rem;
+  line-height: 1.05;
+  transform: rotate(9deg);
+}
+
+.sticker.uno { top: 55px; right: -5px; }
+.sticker.dos {
+  bottom: 35px;
+  left: -30px;
+  background: #e5d8f4;
+  transform: rotate(-10deg);
+  font-size: 1.2rem;
+}
+
+.hero-estrella {
+  position: absolute;
+  color: var(--violeta);
+  font-size: 2rem;
+}
+
+.hero-estrella.e1 { top: 30px; left: 5%; }
+.hero-estrella.e2 { bottom: 45px; right: 4%; font-size: 1.3rem; }
+
+/* FRANJA */
+
+.frase-franja {
+  background: var(--lila);
+  padding: 23px 0;
+  overflow: hidden;
+}
+
+.frase-interior {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(17px, 4vw, 48px);
+  flex-wrap: wrap;
+  color: var(--violeta);
+}
+
+.frase-interior span {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(1.35rem, 3vw, 1.85rem);
+}
+
+.frase-interior b { font-size: .85rem; font-weight: 400; }
+
+/* ÍNDICE */
+
+.seccion { padding-block: 110px; }
+
+.seccion-cabecera {
+  margin-bottom: 44px;
+}
+
+.seccion-cabecera.centrada {
+  text-align: center;
+}
+
+.seccion-cabecera.centrada .subtitulo {
+  margin-inline: auto;
+}
+
+.seccion-cabecera.centrada .etiqueta::before { display: none; }
+
+.indice-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.indice-card {
+  min-height: 205px;
+  padding: 28px;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  background: rgba(255,255,255,.58);
+  transition: .3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.indice-card:hover {
+  transform: translateY(-6px);
+  background: white;
+  box-shadow: var(--sombra);
+  border-color: var(--lila-2);
+}
+
+.indice-numero {
+  font-family: 'Caveat', cursive;
+  font-size: 1.1rem;
+  color: var(--violeta);
+  margin-bottom: 25px;
+}
+
+.indice-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 500;
+  font-size: 1.45rem;
+  margin-bottom: 10px;
+}
+
+.indice-card p {
+  font-size: .84rem;
+  line-height: 1.7;
+  color: var(--suave);
+  margin-bottom: 0;
+}
+
+.indice-flecha {
+  position: absolute;
+  right: 25px;
+  top: 25px;
+  color: var(--violeta);
+  font-size: 1.3rem;
+}
+
+/* PORTAFOLIO */
+
+.portafolio {
+  background: #f0e7f8;
+  position: relative;
+}
+
+.portafolio .seccion-cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 30px;
+}
+
+.portafolio .seccion-cabecera .subtitulo { margin-bottom: 0; }
+
+.filtros {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.filtro {
+  border: 1px solid #d9c9e8;
+  border-radius: 100px;
+  padding: 10px 19px;
+  background: transparent;
+  color: var(--violeta);
+  font-size: .8rem;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.filtro:hover, .filtro.activo {
+  color: white;
+  background: var(--violeta);
+  border-color: var(--violeta);
+}
+
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: 70px;
+  gap: 16px;
+}
+
+.galeria-item {
+  border: 0;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: 17px;
+  background: linear-gradient(145deg, #e2d2f0, #f9f1ff);
+  cursor: pointer;
+  color: var(--violeta);
+  text-align: left;
+  min-width: 0;
+}
+
+.galeria-item:nth-child(1) { grid-column: span 5; grid-row: span 5; }
+.galeria-item:nth-child(2) { grid-column: span 4; grid-row: span 4; }
+.galeria-item:nth-child(3) { grid-column: span 3; grid-row: span 5; }
+.galeria-item:nth-child(4) { grid-column: span 4; grid-row: span 4; }
+.galeria-item:nth-child(5) { grid-column: span 4; grid-row: span 4; }
+.galeria-item:nth-child(6) { grid-column: span 4; grid-row: span 4; }
+
+.galeria-item[hidden] { display: none; }
+
+.galeria-fondo {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 15px;
+  transition: transform .5s ease;
+}
+
+.galeria-item:hover .galeria-fondo { transform: scale(1.04); }
+
+.galeria-fondo .simbolo { font-size: 2rem; opacity: .8; }
+
+.galeria-fondo span {
+  display: block;
+  font-family: 'Caveat', cursive;
+  font-size: 1.25rem;
+  margin-top: 8px;
+}
+
+.galeria-fondo small {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .69rem;
+  opacity: .8;
+  margin-top: 4px;
+}
+
+.galeria-item:nth-child(2) .galeria-fondo { background: linear-gradient(145deg, #e5d4ef, #d0b9e8); }
+.galeria-item:nth-child(3) .galeria-fondo { background: linear-gradient(145deg, #f6e8f4, #e4cce9); }
+.galeria-item:nth-child(4) .galeria-fondo { background: linear-gradient(145deg, #d9c8ee, #efe3f8); }
+.galeria-item:nth-child(5) .galeria-fondo { background: linear-gradient(145deg, #f5e5f3, #e0c8ed); }
+.galeria-item:nth-child(6) .galeria-fondo { background: linear-gradient(145deg, #e6d8f2, #d1b8e6); }
+
+.galeria-etiqueta {
+  position: absolute;
+  left: 15px;
+  bottom: 15px;
+  background: #fffdf0e8;
+  padding: 7px 11px;
+  border-radius: 100px;
+  font-size: .7rem;
+  color: var(--violeta-oscuro);
+}
+
+.galeria-nota {
+  text-align: center;
+  margin-top: 25px;
+  font-size: .8rem;
+  color: var(--suave);
+  line-height: 1.7;
+}
+
+/* SOBRE MÍ */
+
+.sobre-grid {
+  display: grid;
+  grid-template-columns: .92fr 1.08fr;
+  align-items: center;
+  gap: clamp(45px, 8vw, 105px);
+}
+
+.sobre-visual {
+  position: relative;
+  min-height: 470px;
+  display: grid;
+  place-items: center;
+}
+
+.sobre-marco {
+  position: relative;
+  width: min(100%, 390px);
+  height: 440px;
+  background: linear-gradient(155deg, #e6d5f2, #f2e8f8);
+  border-radius: 190px 190px 18px 18px;
+  border: 8px solid white;
+  box-shadow: var(--sombra);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 35px;
+  color: var(--violeta);
+}
+
+.sobre-marco .icono { font-size: 3rem; }
+
+.sobre-marco strong {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-top: 12px;
+}
+
+.sobre-marco small {
+  display: block;
+  line-height: 1.7;
+  margin-top: 10px;
+  color: #806b95;
+}
+
+.sobre-sello {
+  position: absolute;
+  bottom: 20px;
+  right: -12px;
+  padding: 18px 24px;
+  background: #fffdf5;
+  border-radius: 50%;
+  box-shadow: var(--sombra);
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+  color: var(--violeta);
+  transform: rotate(8deg);
+}
+
+.sobre-texto .etiqueta { margin-bottom: 22px; }
+
+.sobre-texto p {
+  color: var(--suave);
+  line-height: 1.95;
+  font-size: .94rem;
+}
+
+.sobre-firma {
+  font-family: 'Caveat', cursive;
+  color: var(--violeta);
+  font-size: 2rem;
+  margin-top: 22px;
+}
+
+/* CÁMARAS */
+
+.camaras { background: #f0e7f8; }
+
+.camaras-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.camara-card {
+  background: var(--blanco);
+  border: 1px solid #e7d9f0;
+  border-radius: var(--radio);
+  padding: 25px;
+  text-align: center;
+  transition: .3s ease;
+}
+
+.camara-card:hover { transform: translateY(-5px); }
+
+.camara-ilustracion {
+  height: 165px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 18px;
+  background: #f6effb;
+  border-radius: 17px;
+  color: var(--violeta);
+}
+
+.camara-ilustracion svg {
+  width: 150px;
+  max-width: 100%;
+  height: auto;
+}
+
+.camara-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.camara-card p {
+  color: var(--suave);
+  font-size: .8rem;
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+/* MIS TRABAJOS */
+
+.trabajos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+
+.trabajo-card {
+  padding: 34px;
+  border-radius: var(--radio);
+  background: white;
+  border: 1px solid var(--borde);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 260px;
+  position: relative;
+  overflow: hidden;
+  transition: .3s;
+}
+
+.trabajo-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--sombra);
+}
+
+.trabajo-icono {
+  width: 51px;
+  height: 51px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--lila);
+  color: var(--violeta);
+  font-size: 1.4rem;
+  margin-bottom: 25px;
+}
+
+.trabajo-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 500;
+  font-size: 1.65rem;
+  margin-bottom: 12px;
+}
+
+.trabajo-card p {
+  color: var(--suave);
+  font-size: .87rem;
+  line-height: 1.8;
+  max-width: 430px;
+  margin-bottom: 20px;
+}
+
+.trabajo-link {
+  margin-top: auto;
+  color: var(--violeta);
+  font-weight: 600;
+  font-size: .83rem;
+}
+
+.trabajo-link span { margin-left: 6px; }
+
+/* INSTAGRAM */
+
+.instagram {
+  padding-block: 90px;
+  background: var(--violeta-oscuro);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.instagram::before, .instagram::after {
+  content: '✳';
+  position: absolute;
+  color: #ffffff18;
+  font-size: 200px;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.instagram::before { top: -60px; left: -30px; }
+.instagram::after { bottom: -80px; right: -10px; }
+
+.instagram-interior {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.instagram .etiqueta { color: #dfc9f5; }
+.instagram .etiqueta::before { display: none; }
+
+.instagram h2 {
+  max-width: 750px;
+  margin: 20px auto;
+}
+
+.instagram h2 em { color: #e4cff7; }
+
+.instagram p {
+  max-width: 510px;
+  margin: 0 auto 28px;
+  color: #e1d4ed;
+  line-height: 1.8;
+  font-size: .9rem;
+}
+
+.instagram .boton {
+  background: white;
+  color: var(--violeta-oscuro);
+  border-color: white;
+}
+
+.instagram .boton:hover { background: var(--lila); }
+
+/* PIE */
+
+footer {
+  padding: 29px 0;
+  background: #f8f4fc;
+}
+
+.footer-interior {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.footer-interior p {
+  margin: 0;
+  color: var(--suave);
+  font-size: .76rem;
+  line-height: 1.7;
+}
+
+.footer-marca {
+  font-family: 'Playfair Display', serif;
+  color: var(--violeta);
+  font-size: 1.15rem;
+}
+
+.volver-arriba {
+  width: 39px;
+  height: 39px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--borde);
+  border-radius: 50%;
+  color: var(--violeta);
+  transition: .2s;
+}
+
+.volver-arriba:hover { background: var(--lila); }
+
+/* APARICIÓN */
+
+.revelar {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+
+.revelar.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+  .revelar { opacity: 1; transform: none; }
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .nav-links { gap: 14px; }
+  .nav-links a { font-size: .75rem; }
+  .hero { gap: 25px; min-height: 590px; }
+  .hero h1 { font-size: clamp(3.4rem, 7vw, 5rem); }
+  .marco-principal { height: 420px; }
+  .hero-visual { min-height: 430px; }
+  .indice-grid { grid-template-columns: repeat(2, 1fr); }
+  .sobre-grid { gap: 45px; }
+}
+
+@media (max-width: 700px) {
+  .contenedor { width: min(100% - 34px, 540px); }
+  .nav { min-height: 70px; }
+  .menu-toggle { display: block; }
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--fondo);
+    padding: 30px 24px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    overflow-y: auto;
+  }
+  .nav-links.abierto { display: flex; }
+  .nav-links a {
+    padding: 18px 5px;
+    font-size: 1rem;
+    border-bottom: 1px solid var(--borde);
+  }
+  .nav-links .nav-cta {
+    text-align: center;
+    margin-top: 20px;
+    border: 1px solid var(--violeta);
+  }
+  .hero {
+    grid-template-columns: 1fr;
+    padding-block: 65px 70px;
+    gap: 25px;
+  }
+  .hero h1 { font-size: clamp(3.6rem, 14vw, 5.4rem); }
+  .hero-descripcion { font-size: .92rem; }
+  .hero-visual { min-height: 390px; }
+  .marco-principal { height: 390px; width: min(88%, 360px); }
+  .sticker { width: 94px; height: 94px; font-size: 1.15rem; }
+  .sticker.uno { right: -2px; top: 35px; }
+  .sticker.dos { left: -5px; bottom: 25px; }
+  .seccion { padding-block: 75px; }
+  .indice-grid { grid-template-columns: 1fr; gap: 12px; }
+  .indice-card { min-height: 170px; }
+  .portafolio .seccion-cabecera {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .galeria {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 155px;
+    gap: 10px;
+  }
+  .galeria-item:nth-child(n) {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+  .galeria-item:first-child { grid-column: span 2; grid-row: span 2; }
+  .galeria-fondo .simbolo { font-size: 1.5rem; }
+  .sobre-grid { grid-template-columns: 1fr; gap: 35px; }
+  .sobre-visual { min-height: 400px; }
+  .sobre-marco { height: 385px; width: min(90%, 340px); }
+  .camaras-grid { grid-template-columns: 1fr; }
+  .camara-card { padding: 22px; }
+  .camara-ilustracion { height: 145px; }
+  .trabajos-grid { grid-template-columns: 1fr; }
+  .trabajo-card { min-height: 240px; padding: 27px; }
+  .instagram { padding-block: 75px; }
+  .footer-interior { flex-wrap: wrap; }
+}
+
+@media (max-width: 380px) {
+  .contenedor { width: calc(100% - 28px); }
+  .marca-texto strong { font-size: .93rem; }
+  .hero-botones { flex-direction: column; align-items: stretch; }
+  .boton { width: 100%; }
+  .galeria { grid-auto-rows: 130px; }
+}
+
+/* Medios cargados desde el panel de CP Fotografía */
+.cp-galeria-media{display:block;padding:0!important;overflow:hidden;background:#e9ddf7!important}.cp-media{width:100%;height:100%;object-fit:cover;display:block}.galeria-item{overflow:hidden}.galeria-vacia{grid-column:1/-1;min-height:260px;border:1px dashed #d9c4f0;border-radius:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:28px;color:var(--violeta);background:linear-gradient(135deg,#f5eefb,#eee2f7)}.galeria-vacia .simbolo{font-size:2.5rem}.galeria-vacia small{color:var(--suave)}.cp-media-modal{display:none;position:fixed;inset:0;z-index:9999;background:rgba(35,22,47,.92);align-items:center;justify-content:center;padding:24px}.cp-modal-contenido{max-width:min(100%,1000px);max-height:90vh;text-align:center;color:white}.cp-modal-contenido img,.cp-modal-contenido video{max-width:100%;max-height:78vh;border-radius:12px}.cp-modal-cerrar{position:absolute;top:16px;right:22px;color:white;background:transparent;border:0;font-size:2.5rem;cursor:pointer}
+</style>
+</head>
+
+<body id="inicio">
+
+<header>
+  <nav class="nav contenedor" aria-label="Navegación principal">
+    <a class="marca" href="#inicio" aria-label="CP Fotografía, inicio">
+      <span class="marca-monograma">CP</span>
+      <span class="marca-texto">
+        <strong>CP Fotografía</strong>
+        <small>Celeste Pérez</small>
+      </span>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+
+    <div class="nav-links" id="navLinks">
+      <a href="#portafolio">Portafolio</a>
+      <a href="#indice">Índice</a>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#mis-camaras">Mis cámaras</a>
+      <a href="#mis-trabajos">Mis trabajos</a>
+      <a class="nav-cta" href="https://www.instagram.com/cpfotografia.ar/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <!-- PORTADA -->
+  <section class="hero contenedor">
+    <div class="hero-texto revelar">
+      <span class="etiqueta">Fotografía · Filmmaker</span>
+      <h1>Momentos que<br>merecen ser<br><span class="nombre">eternos.</span></h1>
+      <p class="hero-descripcion">
+        Soy Celeste. Detrás de cada imagen hay una historia, una emoción y un instante que merece quedarse para siempre.
+      </p>
+      <div class="hero-botones">
+        <a class="boton" href="#portafolio">Explorar portafolio <span>↗</span></a>
+        <a class="boton secundario" href="#sobre-mi">Conoceme un poquito</a>
+      </div>
+      <div class="hero-firma texto-manuscrito">con amor, Cele ♡</div>
+    </div>
+
+    <div class="hero-visual revelar">
+      <span class="hero-estrella e1">✳</span>
+      <span class="hero-estrella e2">✧</span>
+      <div class="marco-principal">
+        <!-- REEMPLAZAR ESTE ESPACIO POR UNA FOTO VERTICAL DE CELESTE -->
+        <div class="portada-placeholder">
+          <div class="camara-icono">♡</div>
+          <strong>Un lugar para tu foto favorita</strong>
+          <span>Acá va la imagen principal de CP Fotografía.</span>
+        </div>
+      </div>
+      <div class="sticker uno">historias<br>en imágenes ✧</div>
+      <div class="sticker dos">un instante,<br>para siempre ♡</div>
+    </div>
+  </section>
+
+  <div class="frase-franja">
+    <div class="frase-interior contenedor">
+      <span>La belleza está en los detalles</span>
+      <b>✳</b>
+      <span>Los recuerdos, en las emociones</span>
+      <b>✳</b>
+      <span>Las historias, en cada imagen</span>
+    </div>
+  </div>
+
+  <!-- ÍNDICE -->
+  <section class="seccion contenedor" id="indice">
+    <div class="seccion-cabecera centrada revelar">
+      <span class="etiqueta">Un poquito de todo</span>
+      <h2>Conocé mi <em>universo</em></h2>
+      <p class="subtitulo">Cada rincón de este espacio tiene algo para mostrarte. Elegí por dónde empezamos.</p>
+    </div>
+
+    <div class="indice-grid">
+      <a class="indice-card revelar" href="#portafolio">
+        <div class="indice-numero">01 / Galería</div>
+        <span class="indice-flecha">↗</span>
+        <h3>Mi portafolio</h3>
+        <p>Una selección de momentos, miradas y recuerdos capturados.</p>
+      </a>
+      <a class="indice-card revelar" href="#sobre-mi">
+        <div class="indice-numero">02 / Detrás de cámara</div>
+        <span class="indice-flecha">↗</span>
+        <h3>Sobre mí</h3>
+        <p>Quién soy, qué me inspira y por qué amo contar historias.</p>
+      </a>
+      <a class="indice-card revelar" href="#mis-camaras">
+        <div class="indice-numero">03 / Mi equipo</div>
+        <span class="indice-flecha">↗</span>
+        <h3>Mis cámaras</h3>
+        <p>Las compañeras que me ayudan a capturar cada instante.</p>
+      </a>
+      <a class="indice-card revelar" href="#mis-trabajos">
+        <div class="indice-numero">04 / Experiencias</div>
+        <span class="indice-flecha">↗</span>
+        <h3>Mis trabajos</h3>
+        <p>Fotografía, eventos y proyectos audiovisuales.</p>
+      </a>
+      <a class="indice-card revelar" href="https://www.instagram.com/cpfotografia.ar/" target="_blank" rel="noopener noreferrer">
+        <div class="indice-numero">05 / Redes</div>
+        <span class="indice-flecha">↗</span>
+        <h3>Instagram</h3>
+        <p>Más imágenes, novedades y un poquito del detrás de escena.</p>
+      </a>
+      <a class="indice-card revelar" href="#contacto">
+        <div class="indice-numero">06 / Hablemos</div>
+        <span class="indice-flecha">↗</span>
+        <h3>Tu próxima historia</h3>
+        <p>¿Tenés una idea o un momento para recordar? Conectemos.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- PORTAFOLIO -->
+  <section class="seccion portafolio" id="portafolio">
+    <div class="contenedor">
+      <div class="seccion-cabecera revelar">
+        <div>
+          <span class="etiqueta">Un poco de lo que hago</span>
+          <h2>Instantes que<br><em>hablan solos.</em></h2>
+        </div>
+        <p class="subtitulo">Una galería para descubrir mi mirada. Próximamente, acá vas a encontrar las fotografías y los videos.</p>
+      </div>
+
+      <div class="filtros revelar" aria-label="Filtrar galería">
+        <button class="filtro activo" data-filter="todos" aria-pressed="true">Todo</button>
+        <button class="filtro" data-filter="foto" aria-pressed="false">Fotografías</button>
+        <button class="filtro" data-filter="video" aria-pressed="false">Videos</button>
+      </div>
+
+      <div class="galeria revelar" id="galeria" aria-live="polite"><div class="galeria-vacia"><span class="simbolo">♡</span><span>Tu historia visual empieza acá</span><small>Pronto vas a encontrar fotografías y videos de Celeste.</small></div></div><p class="galeria-nota" id="galeria-nota">Las fotografías y los videos se actualizan desde el panel privado. ♡</p>
+    </div>
+  </section>
+
+  <!-- SOBRE MÍ -->
+  <section class="seccion contenedor" id="sobre-mi">
+    <div class="sobre-grid">
+      <div class="sobre-visual revelar">
+        <div class="sobre-marco">
+          <!-- REEMPLAZAR POR UNA FOTO DE CELESTE -->
+          <div>
+            <div class="icono">♡</div>
+            <strong>Un poquito de mí</strong>
+            <small>Acá va una foto tuya y, más adelante, tu historia.</small>
+          </div>
+        </div>
+        <div class="sobre-sello">mucho amor<br>en cada click ✧</div>
+      </div>
+
+      <div class="sobre-texto revelar">
+        <span class="etiqueta">Detrás de la cámara</span>
+        <h2>Hola, soy <em>Celeste.</em></h2>
+        <p>
+          Me encanta encontrar belleza en los pequeños detalles y guardar esos momentos que, aunque duren un segundo, pueden significar muchísimo.
+        </p>
+        <p>
+          La fotografía y el video son mi forma de contar historias: con sensibilidad, creatividad y una mirada propia.
+        </p>
+        <p>
+          Este espacio es una pequeña parte de mi mundo creativo. Acá voy a compartir mis trabajos, mis experiencias y todo eso que me inspira a seguir creando.
+        </p>
+        <div class="sobre-firma">Celeste Pérez ♡</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MIS CÁMARAS -->
+  <section class="seccion camaras" id="mis-camaras">
+    <div class="contenedor">
+      <div class="seccion-cabecera centrada revelar">
+        <span class="etiqueta">Mis compañeras creativas</span>
+        <h2>Un equipo, <em>mil historias.</em></h2>
+        <p class="subtitulo">Las herramientas que me acompañan para capturar cada idea. Las ilustraciones son decorativas; podés reemplazarlas por fotos de tu equipo real.</p>
+      </div>
+
+      <div class="camaras-grid">
+        <article class="camara-card revelar">
+          <div class="camara-ilustracion">
+            <svg viewBox="0 0 180 115" role="img" aria-label="Ilustración decorativa de una cámara réflex">
+              <defs>
+                <linearGradient id="cuerpo1" x1="0" y1="0" x2="0.9" y2="1">
+                  <stop offset="0%" stop-color="#8d72aa"/>
+                  <stop offset="100%" stop-color="#57416e"/>
+                </linearGradient>
+              </defs>
+              <rect x="20" y="34" width="140" height="66" rx="10" fill="url(#cuerpo1)"/>
+              <path d="M48 34 L58 20 H94 L105 34" fill="#70558a"/>
+              <rect x="31" y="43" width="24" height="12" rx="3" fill="#b8a0ce"/>
+              <circle cx="91" cy="67" r="28" fill="#41324f"/>
+              <circle cx="91" cy="67" r="22" fill="#b4a0c8"/>
+              <circle cx="91" cy="67" r="17" fill="#66517c"/>
+              <circle cx="91" cy="67" r="10" fill="#30283b"/>
+              <circle cx="85" cy="61" r="4" fill="#eee4f8"/>
+              <rect x="122" y="43" width="25" height="9" rx="3" fill="#c6b4d7"/>
+              <circle cx="142" cy="28" r="5" fill="#8d72aa"/>
+            </svg>
+          </div>
+          <h3>Nikon D5300</h3>
+          <p>Mi cámara réflex para explorar encuadres, luces y momentos especiales.</p>
+        </article>
+
+        <article class="camara-card revelar">
+          <div class="camara-ilustracion">
+            <svg viewBox="0 0 180 115" role="img" aria-label="Ilustración decorativa de un teleobjetivo">
+              <defs>
+                <linearGradient id="lente1" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#8d72aa"/>
+                  <stop offset="100%" stop-color="#4e3a63"/>
+                </linearGradient>
+              </defs>
+              <g transform="translate(15 14) rotate(-7 75 45)">
+                <rect x="20" y="28" width="125" height="52" rx="7" fill="url(#lente1)"/>
+                <rect x="30" y="25" width="15" height="58" rx="3" fill="#b9a2d0"/>
+                <rect x="65" y="25" width="9" height="58" rx="2" fill="#c9b8da"/>
+                <rect x="91" y="25" width="9" height="58" rx="2" fill="#c9b8da"/>
+                <rect x="115" y="25" width="8" height="58" rx="2" fill="#b9a2d0"/>
+                <rect x="130" y="21" width="18" height="66" rx="4" fill="#43334f"/>
+                <ellipse cx="147" cy="54" rx="8" ry="33" fill="#30263a"/>
+                <ellipse cx="148" cy="54" rx="4" ry="24" fill="#9782b1"/>
+              </g>
+            </svg>
+          </div>
+          <h3>70–300 mm</h3>
+          <p>Un lente para acercarme a los detalles y jugar con nuevas perspectivas.</p>
+        </article>
+
+        <article class="camara-card revelar">
+          <div class="camara-ilustracion">
+            <svg viewBox="0 0 180 115" role="img" aria-label="Ilustración decorativa de una cámara compacta celeste">
+              <defs>
+                <linearGradient id="cuerpo2" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#b9e4ee"/>
+                  <stop offset="100%" stop-color="#72b9d1"/>
+                </linearGradient>
+              </defs>
+              <rect x="25" y="26" width="130" height="72" rx="12" fill="url(#cuerpo2)" stroke="#659db2" stroke-width="1.5"/>
+              <rect x="40" y="33" width="24" height="14" rx="4" fill="#eaf9fc"/>
+              <circle cx="94" cy="62" r="28" fill="#699eb3"/>
+              <circle cx="94" cy="62" r="22" fill="#3d6074"/>
+              <circle cx="94" cy="62" r="16" fill="#a9dce8"/>
+              <circle cx="94" cy="62" r="10" fill="#344d65"/>
+              <circle cx="89" cy="57" r="4" fill="#f2fcff"/>
+              <circle cx="139" cy="42" r="5" fill="#f4fbff"/>
+              <rect x="71" y="18" width="38" height="10" rx="3" fill="#80bfd3"/>
+            </svg>
+          </div>
+          <h3>Canon PowerShot ELPH 115 IS</h3>
+          <p>Mi compacta celeste, ideal para sumar otra mirada y llevarla conmigo.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- MIS TRABAJOS -->
+  <section class="seccion contenedor" id="mis-trabajos">
+    <div class="seccion-cabecera centrada revelar">
+      <span class="etiqueta">Creaciones y experiencias</span>
+      <h2>Lo que me gusta <em>capturar.</em></h2>
+      <p class="subtitulo">Distintas formas de contar historias. Esta sección puede crecer con tus trabajos reales y sus respectivas galerías.</p>
+    </div>
+
+    <div class="trabajos-grid">
+      <article class="trabajo-card revelar">
+        <div class="trabajo-icono">✿</div>
+        <h3>Fotografía de eventos</h3>
+        <p>Personas, celebraciones, emociones y esos detalles que hacen que cada evento sea único.</p>
+        <a class="trabajo-link" href="#portafolio">Ver en el portafolio <span>↗</span></a>
+      </article>
+
+      <article class="trabajo-card revelar">
+        <div class="trabajo-icono">▷</div>
+        <h3>Filmmaker & video</h3>
+        <p>Imágenes en movimiento, pequeños relatos y recuerdos que también merecen volver a verse.</p>
+        <a class="trabajo-link" href="#portafolio">Explorar videos <span>↗</span></a>
+      </article>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM / CONTACTO -->
+  <section class="instagram" id="contacto">
+    <div class="instagram-interior contenedor revelar">
+      <span class="etiqueta">Sigamos conectados</span>
+      <h2>¿Creamos algo <em>hermoso?</em></h2>
+      <p>
+        Si te gusta mi trabajo, querés ver más fotografías o tenés una idea para compartir, me encantaría que nos encontremos por Instagram.
+      </p>
+      <a class="boton" href="https://www.instagram.com/cpfotografia.ar/" target="_blank" rel="noopener noreferrer">
+        <span>♡</span> @cpfotografia.ar <span>↗</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-interior contenedor">
+    <div>
+      <div class="footer-marca">CP Fotografía ♡</div>
+      <p>Celeste Pérez · Fotógrafa & Filmmaker · Cinco Saltos, Río Negro</p>
+    </div>
+    <p>Hecho con amor y un poquito de magia ✧</p>
+    <a class="volver-arriba" href="#inicio" aria-label="Volver al inicio">↑</a>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script>window.cpSupabase=window.supabase.createClient("https://gngfnqhnbgwtnlmlxdit.supabase.co","sb_publishable_MiGNvzesx0ZBfkxx-3Tlkg_R9KPtgPg");</script>
+<script>
+/* MENÚ PARA CELULAR */
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+
+menuToggle.addEventListener('click', () => {
+  const abierto = navLinks.classList.toggle('abierto');
+  menuToggle.setAttribute('aria-expanded', String(abierto));
+  menuToggle.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
+  menuToggle.textContent = abierto ? '×' : '☰';
+  document.body.classList.toggle('menu-abierto', abierto);
+});
+
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('abierto');
+    document.body.classList.remove('menu-abierto');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.setAttribute('aria-label', 'Abrir menú');
+    menuToggle.textContent = '☰';
+  });
+});
+
+/* FILTROS DE FOTOGRAFÍAS Y VIDEOS */
+const filtros = document.querySelectorAll('.filtro');
+const elementosGaleria = document.querySelectorAll('.galeria-item');
+
+filtros.forEach(filtro => {
+  filtro.addEventListener('click', () => {
+    const tipo = filtro.dataset.filter;
+
+    filtros.forEach(boton => {
+      const activo = boton === filtro;
+      boton.classList.toggle('activo', activo);
+      boton.setAttribute('aria-pressed', String(activo));
+    });
+
+    elementosGaleria.forEach(elemento => {
+      elemento.hidden = tipo !== 'todos' && elemento.dataset.type !== tipo;
+    });
+  });
+});
+
+/* ANIMACIONES SUAVES AL DESPLAZARSE */
+const elementosRevelar = document.querySelectorAll('.revelar');
+
+if ('IntersectionObserver' in window) {
+  const observador = new IntersectionObserver((entradas, obs) => {
+    entradas.forEach(entrada => {
+      if (entrada.isIntersecting) {
+        entrada.target.classList.add('visible');
+        obs.unobserve(entrada.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  elementosRevelar.forEach(elemento => observador.observe(elemento));
+} else {
+  elementosRevelar.forEach(elemento => elemento.classList.add('visible'));
+}
+
+/*
+  CUANDO AGREGUES LAS FOTOS:
+  1. Poné las imágenes en una carpeta llamada "imagenes".
+  2. Reemplazá los espacios de la galería por etiquetas <img>.
+  3. Para videos, podés usar <video controls> o una miniatura con un enlace.
+  4. Conservá la clase "galeria-item" y el atributo data-type="foto" o "video"
+     para que los filtros sigan funcionando.
+*/
+
+/* CP Fotografía: cargar la galería pública desde Supabase */
+(async function(){
+ const db=window.cpSupabase, mount=document.getElementById('galeria'); if(!db||!mount)return;
+ // Vincular los campos editables guardados en el panel a elementos del diseño.
+ const textHooks=[
+  ['portada','titulo','.hero h1'],['portada','descripcion','.hero-descripcion'],
+  ['sobre-mi','titulo','#sobre-mi .sobre-texto h2'],['sobre-mi','descripcion','#sobre-mi .sobre-texto p'],
+  ['trabajos','titulo','#mis-trabajos h2'],['trabajos','descripcion','#mis-trabajos .subtitulo'],
+  ['contacto','titulo','#contacto h2'],['contacto','descripcion','#contacto p']
+ ];
+ textHooks.forEach(([section,field,selector])=>{const el=document.querySelector(selector);if(el){el.dataset.cpSection=section;el.dataset.cpField=field;}});
+ try{
+  const {data:texts,error:textError}=await db.from('contenido_web').select('seccion,titulo,descripcion');
+  if(!textError&&Array.isArray(texts)){const bySection=Object.fromEntries(texts.map(x=>[x.seccion,x]));document.querySelectorAll('[data-cp-section][data-cp-field]').forEach(el=>{const row=bySection[el.dataset.cpSection];const value=row&&row[el.dataset.cpField];if(typeof value==='string'&&value.trim())el.textContent=value;});}
+ }catch(e){console.warn('No se pudieron cargar los textos guardados.',e)}
+ try{
+  const {data:items,error}=await db.from('galeria_items').select('id,nombre,ruta_archivo,tipo,titulo,descripcion,orden').eq('publicado',true).order('orden',{ascending:true});
+  if(error)throw error; if(!items||!items.length)return;
+  mount.innerHTML='';
+  items.forEach(item=>{
+   const {data}=db.storage.from('galeria-cp').getPublicUrl(item.ruta_archivo); const mediaUrl=data.publicUrl;
+   const title=item.titulo||item.nombre||'CP Fotografía'; const card=document.createElement('button');card.type='button';card.className='galeria-item';card.dataset.type=item.tipo==='video'?'video':'foto';card.dataset.title=title;card.setAttribute('aria-label',title);
+   const media=item.tipo==='video'?document.createElement('video'):document.createElement('img');media.className='cp-media';media.src=mediaUrl;
+   if(item.tipo==='video'){media.muted=true;media.playsInline=true;media.preload='metadata'}else{media.alt=title;media.loading='lazy'}
+   const bg=document.createElement('span');bg.className='galeria-fondo cp-galeria-media';bg.appendChild(media);const label=document.createElement('span');label.className='galeria-etiqueta';label.textContent=title+(item.tipo==='video'?' ▶':'');card.append(bg,label);
+   card.addEventListener('click',()=>{const modal=document.createElement('div');modal.className='cp-media-modal';modal.style.display='flex';const content=document.createElement('div');content.className='cp-modal-contenido';const close=document.createElement('button');close.className='cp-modal-cerrar';close.textContent='×';close.setAttribute('aria-label','Cerrar');const full=item.tipo==='video'?document.createElement('video'):document.createElement('img');full.src=mediaUrl;if(item.tipo==='video'){full.controls=true;full.autoplay=true;full.playsInline=true}else full.alt=title;const caption=document.createElement('p');caption.textContent=title;content.append(full,caption);modal.append(close,content);const remove=()=>modal.remove();close.onclick=remove;modal.addEventListener('click',e=>{if(e.target===modal)remove()});document.body.appendChild(modal)});
+   mount.appendChild(card);
+  });const note=document.getElementById('galeria-nota');if(note)note.textContent='Fotografías y videos seleccionados de CP Fotografía. ♡';
+  // Filtros delegados: también funcionan con tarjetas agregadas dinámicamente.
+  const filters=document.querySelectorAll('.filtro');filters.forEach(f=>f.onclick=()=>{const type=f.dataset.filter;filters.forEach(b=>{const active=b===f;b.classList.toggle('activo',active);b.setAttribute('aria-pressed',String(active))});mount.querySelectorAll('.galeria-item').forEach(card=>card.hidden=type!=='todos'&&card.dataset.type!==type)});
+ }catch(err){console.warn('La galería de CP Fotografía no pudo cargarse:',err)}
+})();
+
+</script>
+
+</body>
+</html>
