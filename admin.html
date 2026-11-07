@@ -3,648 +3,937 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#f2eafb">
-<title>Panel privado | CP Fotografía</title>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#f4edf9">
+<title>Administración | CP Fotografía</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
-:root {
-  --bg:#f8f4fc;
-  --lila:#e9ddf7;
-  --violeta:#77549c;
-  --oscuro:#4e356c;
-  --texto:#40344a;
-  --suave:#81748b;
-  --borde:#e8dff0;
-  --blanco:#fffdfd;
+:root{
+--bg:#f7f2fa;
+--paper:#fffdfd;
+--purple:#765596;
+--deep:#4d3764;
+--ink:#40344a;
+--muted:#887b91;
+--line:#eadff0;
+--pink:#f1e4f0
 }
-
-* { box-sizing:border-box }
-
-body {
-  margin:0;
-  background:var(--bg);
-  color:var(--texto);
-  font-family:'DM Sans',sans-serif;
+*{box-sizing:border-box}
+body{
+margin:0;
+background:var(--bg);
+color:var(--ink);
+font:15px 'DM Sans',sans-serif
 }
-
-header {
-  padding:20px clamp(18px,5vw,56px);
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:14px;
-  border-bottom:1px solid var(--borde);
-  background:#fffdfddd;
-  position:sticky;
-  top:0;
+button,input,textarea,select{font:inherit}
+button{
+cursor:pointer;
+border:0;
+border-radius:999px;
+padding:11px 16px;
+background:var(--purple);
+color:white;
+font-weight:700
 }
-
-.brand {
-  font:700 2rem Caveat;
-  color:var(--oscuro);
+button.alt{background:var(--pink);color:var(--deep)}
+button.danger{background:#fae9ee;color:#91435e}
+button:disabled{opacity:.4;cursor:not-allowed}
+.shell{
+display:grid;
+grid-template-columns:245px 1fr;
+min-height:100vh
 }
-
-.brand small {
-  display:block;
-  font:500 .72rem 'DM Sans';
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  color:var(--suave);
+.side{
+background:#fffdfd;
+border-right:1px solid var(--line);
+padding:26px 16px;
+position:sticky;
+top:0;
+height:100vh
 }
-
-main {
-  max-width:1000px;
-  margin:30px auto;
-  padding:0 18px 60px;
+.logo{
+font:700 28px 'Playfair Display';
+color:var(--deep);
+padding:0 12px 24px
 }
-
-.intro h1 {
-  font:600 clamp(2rem,5vw,3rem) 'Playfair Display';
-  margin:0 0 8px;
+.logo small{
+display:block;
+font:600 10px 'DM Sans';
+letter-spacing:.18em;
+text-transform:uppercase;
+color:var(--muted);
+margin-top:5px
 }
-
-.intro p,.muted { color:var(--suave) }
-
-.panel {
-  background:var(--blanco);
-  border:1px solid var(--borde);
-  border-radius:22px;
-  padding:clamp(18px,3vw,28px);
-  margin:20px 0;
-  box-shadow:0 15px 45px #5e3e7d12;
+.nav{display:grid;gap:7px}
+.nav button{
+background:transparent;
+color:var(--ink);
+text-align:left;
+border-radius:12px
 }
-
-h2 {
-  font:600 1.55rem 'Playfair Display';
-  margin:0 0 12px;
+.nav button.active,.nav button:hover{
+background:var(--pink);
+color:var(--deep)
 }
-
-label {
-  display:block;
-  font-size:.9rem;
-  font-weight:700;
-  margin:12px 0 6px;
+.side-foot{
+position:absolute;
+bottom:22px;
+left:25px;
+right:25px;
+color:var(--muted);
+font-size:12px
 }
-
-input,textarea,select {
-  font:inherit;
-  width:100%;
-  padding:12px;
-  border:1px solid var(--borde);
-  border-radius:12px;
-  background:white;
-  color:var(--texto);
+.main{
+padding:34px clamp(18px,4vw,54px);
+max-width:1200px;
+width:100%;
+margin:auto
 }
-
-textarea { min-height:85px }
-
-button,.btn {
-  font:700 .9rem 'DM Sans';
-  border:0;
-  border-radius:999px;
-  padding:11px 16px;
-  background:var(--violeta);
-  color:white;
-  cursor:pointer;
-  text-decoration:none;
-  display:inline-block;
+.top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:12px;
+margin-bottom:28px
 }
-
-button.secondary {
-  background:var(--lila);
-  color:var(--oscuro);
+.eyebrow{
+color:var(--purple);
+text-transform:uppercase;
+letter-spacing:.15em;
+font-size:11px;
+font-weight:700
 }
-
-button.danger {
-  background:#f8e8ee;
-  color:#873e59;
+.main h1{
+font:600 clamp(28px,4vw,40px) 'Playfair Display';
+margin:6px 0
 }
-
-button:disabled { opacity:.45 }
-
-.actions,.top {
-  display:flex;
-  flex-wrap:wrap;
-  gap:9px;
-  margin-top:14px;
-  align-items:center;
+.muted{color:var(--muted);line-height:1.6}
+.panel{
+background:var(--paper);
+border:1px solid var(--line);
+border-radius:20px;
+padding:24px;
+margin:18px 0;
+box-shadow:0 12px 35px #54366c0b
 }
-
-.status {
-  padding:12px;
-  border-radius:12px;
-  background:#f1eaf8;
-  white-space:pre-wrap;
-  margin:12px 0;
+.panel h2{
+font:600 22px 'Playfair Display';
+margin:0 0 8px
 }
-
-.error {
-  background:#fff0f0;
-  color:#8a2f2f;
+.field{margin:14px 0}
+.field label{
+display:block;
+font-size:13px;
+font-weight:700;
+margin:0 0 7px
 }
-
-.hidden { display:none!important }
-
-.grid {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
+.field input,.field textarea,.field select{
+width:100%;
+border:1px solid var(--line);
+border-radius:12px;
+padding:12px;
+background:#fff;
+color:var(--ink)
 }
-
-.item {
-  display:grid;
-  grid-template-columns:100px 1fr;
-  gap:13px;
-  padding:14px 0;
-  border-bottom:1px solid var(--borde);
+textarea{min-height:110px;resize:vertical}
+.row{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:14px
 }
-
-.thumb {
-  width:100px;
-  height:95px;
-  object-fit:cover;
-  background:var(--lila);
-  border-radius:12px;
+.actions{
+display:flex;
+flex-wrap:wrap;
+gap:9px;
+margin-top:16px
 }
-
-.item h3 { margin:0 0 5px }
-
-.item-actions {
-  display:flex;
-  gap:7px;
-  flex-wrap:wrap;
-  margin-top:9px;
+.notice{
+padding:12px 15px;
+border-radius:12px;
+background:var(--pink);
+margin:14px 0;
+white-space:pre-wrap
 }
-
-.item-actions button {
-  font-size:.8rem;
-  padding:8px 11px;
+.notice.error{background:#fff0f0;color:#8a3030}
+.hidden{display:none!important}
+.asset{
+display:grid;
+grid-template-columns:100px 1fr;
+gap:14px;
+padding:15px 0;
+border-bottom:1px solid var(--line)
 }
-
-@media(max-width:600px) {
-  .grid { grid-template-columns:1fr }
-  .item { grid-template-columns:76px 1fr }
-  .thumb { width:76px;height:76px }
-  header {
-    align-items:flex-start;
-    flex-direction:column;
-  }
+.thumb{
+width:100px;
+height:95px;
+object-fit:cover;
+border-radius:12px;
+background:var(--pink)
+}
+.asset h3{margin:0 0 4px}
+.asset small{color:var(--muted)}
+.asset input{
+width:100%;
+padding:9px;
+border:1px solid var(--line);
+border-radius:10px;
+margin-top:8px
+}
+.asset-actions{
+display:flex;
+gap:7px;
+flex-wrap:wrap;
+margin-top:8px
+}
+.asset-actions button{font-size:12px;padding:8px 11px}
+.login{max-width:440px;margin:10vh auto}
+.stat{
+display:inline-block;
+background:#f8f3fb;
+border-radius:12px;
+padding:12px 16px;
+margin:5px 6px 5px 0
+}
+.help{font-size:12px;color:var(--muted)}
+@media(max-width:760px){
+.shell{display:block}
+.side{position:relative;height:auto;padding:15px}
+.logo{padding:4px 10px 12px}
+.nav{display:flex;overflow:auto}
+.nav button{white-space:nowrap}
+.side-foot{display:none}
+.main{padding:22px 15px}
+.row{grid-template-columns:1fr}
+.asset{grid-template-columns:76px 1fr}
+.thumb{width:76px;height:76px}
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <div class="brand">
-    CP Fotografía
-    <small>Panel de administración</small>
-  </div>
+<div id="login" class="panel login">
+<div class="logo">
+CP Fotografía
+<small>Administración privada</small>
+</div>
 
-  <div class="top">
-    <a class="btn" href="./index.html">Ver página</a>
-    <button id="logout" class="secondary hidden">Cerrar sesión</button>
-  </div>
-</header>
+<h2>Bienvenida ♡</h2>
+<p class="muted">
+Ingresá con tu cuenta autorizada para administrar el sitio.
+</p>
 
-<main>
+<form id="loginForm">
+<div class="field">
+<label>Correo electrónico</label>
+<input id="email" type="email" required autocomplete="username">
+</div>
 
-  <section class="intro">
-    <h1>Tu espacio creativo ♡</h1>
-    <p>Administrá las fotos y videos de tu portfolio sin editar código.</p>
-  </section>
+<div class="field">
+<label>Contraseña</label>
+<input id="password" type="password" required autocomplete="current-password">
+</div>
 
-  <div id="status" class="status hidden" role="status"></div>
+<button>Ingresar al panel</button>
+</form>
 
-  <section id="login-panel" class="panel">
-    <h2>Ingresar al panel</h2>
-    <p class="muted">Usá el correo y contraseña del usuario compartido de CP Fotografía.</p>
+<div id="loginMsg" class="notice hidden"></div>
+</div>
 
-    <form id="login-form">
-      <label for="email">Correo electrónico</label>
-      <input id="email" type="email" autocomplete="username" required>
 
-      <label for="password">Contraseña</label>
-      <input id="password" type="password" autocomplete="current-password" required>
+<div id="app" class="shell hidden">
 
-      <div class="actions">
-        <button>Iniciar sesión</button>
-      </div>
-    </form>
-  </section>
+<aside class="side">
 
-  <div id="admin-content" class="hidden">
+<div class="logo">
+CP Fotografía
+<small>Panel de administración</small>
+</div>
 
-    <section class="panel">
-      <h2>Subir fotos y videos</h2>
-      <p class="muted">Seleccioná varios archivos a la vez. Para videos, preferí MP4 o WebM optimizados para web.</p>
+<nav class="nav">
+<button class="active" data-tab="inicio">⌂　Resumen</button>
+<button data-tab="portafolio">▧　Portafolio</button>
+<button data-tab="sobre-mi">♡　Sobre mí</button>
+<button data-tab="trabajos">✿　Mis trabajos</button>
+<button data-tab="camaras">◎　Mis cámaras</button>
+<button data-tab="contacto">✉　Contacto</button>
+<button data-tab="portada">✧　Portada</button>
+</nav>
 
-      <label for="files">Archivos</label>
-      <input id="files" type="file" accept="image/*,video/mp4,video/webm,video/quicktime" multiple>
+<div class="side-foot">
+CP Fotografía · Celeste Pérez<br>
+<a href="./index.html">Ver sitio público ↗</a>
+</div>
 
-      <div class="grid">
-        <div>
-          <label for="type">Tipo de archivo</label>
-          <select id="type">
-            <option value="auto">Detectar automáticamente</option>
-            <option value="imagen">Fotografía</option>
-            <option value="video">Video</option>
-          </select>
-        </div>
+</aside>
 
-        <div>
-          <label for="caption">Título (opcional)</label>
-          <input id="caption" placeholder="Ej.: Sesión de otoño">
-        </div>
-      </div>
 
-      <div class="actions">
-        <button id="upload">Subir archivos seleccionados</button>
-      </div>
+<main class="main">
 
-      <p class="muted">El bucket es público: los archivos publicados pueden verse mediante su enlace público.</p>
-    </section>
+<div class="top">
+<div>
+<div class="eyebrow">Tu espacio creativo</div>
+<h1 id="pageTitle">Resumen</h1>
+<div class="muted">
+Administrá el contenido de tu página sin editar código.
+</div>
+</div>
 
-    <section class="panel">
-      <h2>Administrar galería</h2>
-      <p class="muted">Cambiá títulos, orden, publicación o eliminá elementos.</p>
-      <div id="gallery-list">Iniciá sesión para ver los archivos.</div>
-    </section>
+<button id="logout" class="alt">Cerrar sesión</button>
+</div>
 
-    <section class="panel">
-      <h2>Textos guardados</h2>
-      <p class="muted">Podés guardar textos por sección en la base de datos. La versión actual del sitio todavía conserva gran parte de sus textos originales fijos; después podemos vincular cada campo visualmente.</p>
+<div id="notice" class="notice hidden"></div>
 
-      <label for="section">Sección</label>
-      <select id="section">
-        <option value="portada">Portada</option>
-        <option value="sobre-mi">Sobre mí</option>
-        <option value="trabajos">Mis trabajos</option>
-        <option value="contacto">Contacto</option>
-      </select>
 
-      <label for="text-title">Título</label>
-      <input id="text-title">
+<section id="tab-inicio" class="tab">
 
-      <label for="text-description">Descripción</label>
-      <textarea id="text-description"></textarea>
+<div class="panel">
+<h2>¡Hola, Cele! ♡</h2>
 
-      <div class="actions">
-        <button id="load-text" class="secondary">Cargar</button>
-        <button id="save-text">Guardar</button>
-      </div>
-    </section>
+<p class="muted">
+Desde este panel podés actualizar todas las secciones de CP Fotografía.
+Los cambios guardados se reflejan en la página pública.
+</p>
 
-  </div>
+<div id="stats"></div>
+</div>
+
+<div class="panel">
+<h2>Cómo administrar</h2>
+
+<p class="muted">
+Elegí una sección del menú. En Portafolio, Mis trabajos y Mis cámaras
+podés subir archivos y gestionar cada elemento. En las demás secciones
+podés editar textos, enlaces e imágenes.
+</p>
+</div>
+
+</section>
+
+
+<section id="tab-media" class="tab hidden">
+
+<div class="panel">
+<h2 id="mediaHeading">Contenido</h2>
+<p class="muted" id="mediaHelp"></p>
+
+<div class="row">
+
+<div class="field">
+<label>Fotos y videos</label>
+<input id="files" type="file"
+accept="image/*,video/mp4,video/webm,video/quicktime" multiple>
+</div>
+
+<div class="field">
+<label>Categoría</label>
+<select id="category">
+<option value="portafolio">Portafolio</option>
+<option value="trabajos">Mis trabajos</option>
+<option value="camaras">Mis cámaras</option>
+<option value="sobre-mi">Sobre mí</option>
+</select>
+</div>
+
+</div>
+
+<div class="field">
+<label>Título para los archivos (opcional)</label>
+<input id="caption" placeholder="Ej.: Nikon D5300 o Sesión de otoño">
+</div>
+
+<div class="field">
+<label>Descripción (opcional)</label>
+<textarea id="assetDescription"
+placeholder="Contá algo sobre este trabajo o equipo..."></textarea>
+</div>
+
+<button id="upload">Subir archivos</button>
+</div>
+
+
+<div class="panel">
+<h2>Elementos cargados</h2>
+<div id="assetList" class="muted">Cargando...</div>
+</div>
+
+</section>
+
+
+<section id="tab-editor" class="tab hidden">
+
+<div class="panel">
+
+<h2 id="editorHeading">Editar sección</h2>
+
+<p class="muted" id="editorHelp">
+Modificá los textos que aparecen en la página.
+</p>
+
+<div class="field">
+<label>Título principal</label>
+<input id="contentTitle">
+</div>
+
+<div class="field">
+<label>Descripción / texto</label>
+<textarea id="contentDescription"></textarea>
+</div>
+
+<div class="field">
+<label>Texto adicional (opcional)</label>
+<textarea id="contentExtra"></textarea>
+</div>
+
+<div class="field">
+<label>Enlace (opcional)</label>
+<input id="contentLink" placeholder="https://...">
+</div>
+
+<div class="field">
+<label>Imagen de esta sección (opcional)</label>
+<input id="contentImage" type="file" accept="image/*">
+</div>
+
+<div id="currentImage" class="help"></div>
+
+<div class="actions">
+<button id="saveContent">Guardar cambios</button>
+<button id="loadContent" class="alt">Recargar</button>
+</div>
+
+</div>
+</section>
+
 </main>
+</div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
+
 const db = window.supabase.createClient(
-  'https://gngfnqhnbgwtnlmlxdit.supabase.co',
-  'sb_publishable_MiGNvzesx0ZBfkxx-3Tlkg_R9KPtgPg'
+'https://gngfnqhnbgwtnlmlxdit.supabase.co',
+'sb_publishable_MiGNvzesx0ZBfkxx-3Tlkg_R9KPtgPg'
 );
 
 const ALLOWED = 'a7e2deee-131b-4f2d-9d1f-319d01fa27e2';
 
 const $ = id => document.getElementById(id);
 
-function msg(t,err=false) {
-  $('status').textContent = t;
-  $('status').className = 'status' + (err ? ' error' : '');
-}
+let currentTab = 'inicio';
+let currentSection = 'portada';
+let currentMedia = 'portafolio';
+let contentRow = null;
 
-function safe(s) {
-  return String(s ?? '').replace(/[&<>"']/g,c=>({
-    '&':'&amp;',
-    '<':'&lt;',
-    '>':'&gt;',
-    '"':'&quot;',
-    "'":'&#39;'
-  }[c]));
-}
 
-function video(f) {
-  return f.type.startsWith('video/');
-}
-
-async function session() {
-  const {data:{session:s}} = await db.auth.getSession();
-
-  if(s && s.user.id !== ALLOWED) {
-    await db.auth.signOut();
-    msg('Esta cuenta no está autorizada.',true);
-    return;
-  }
-
-  $('login-panel').classList.toggle('hidden',!!s);
-  $('admin-content').classList.toggle('hidden',!s);
-  $('logout').classList.toggle('hidden',!s);
-
-  if(s) await gallery();
-}
-
-$('login-form').onsubmit = async e => {
-  e.preventDefault();
-
-  const {data,error} = await db.auth.signInWithPassword({
-    email:$('email').value.trim(),
-    password:$('password').value
-  });
-
-  if(error) {
-    msg('No se pudo iniciar sesión: '+error.message,true);
-    return;
-  }
-
-  if(data.user.id !== ALLOWED) {
-    await db.auth.signOut();
-    msg('Esta cuenta no está autorizada.',true);
-    return;
-  }
-
-  msg('Sesión iniciada.');
-  await session();
+const sections = {
+portada:['Portada','Título y descripción de bienvenida.'],
+'sobre-mi':['Sobre mí','Presentación, biografía y fotografía personal.'],
+trabajos:['Mis trabajos','Texto introductorio de tus proyectos.'],
+camaras:['Mis cámaras','Texto introductorio de tu equipo fotográfico.'],
+contacto:['Contacto','Texto, redes y enlace de contacto.']
 };
 
-$('logout').onclick = async () => {
-  await db.auth.signOut();
-  await session();
-  msg('Sesión cerrada.');
-};
 
-db.auth.onAuthStateChange(() => setTimeout(session,0));
-
-$('upload').onclick = async () => {
-  const files = [...$('files').files];
-
-  if(!files.length) {
-    msg('Elegí uno o más archivos.',true);
-    return;
-  }
-
-  $('upload').disabled = true;
-
-  let ok = 0;
-  let errors = [];
-
-  for(const f of files) {
-    try {
-      const v = video(f);
-
-      const type = $('type').value === 'auto'
-        ? (v ? 'video' : 'imagen')
-        : $('type').value;
-
-      if((type === 'video') !== v) {
-        throw Error('Tipo incorrecto para '+f.name);
-      }
-
-      const clean = f.name.normalize('NFKD')
-        .replace(/[\u0300-\u036f]/g,'')
-        .replace(/[^a-zA-Z0-9._-]+/g,'-');
-
-      const path = Date.now()+'-'+Math.random().toString(36).slice(2,7)+'-'+clean;
-
-      let r = await db.storage
-        .from('galeria-cp')
-        .upload(path,f,{
-          cacheControl:'3600',
-          upsert:false
-        });
-
-      if(r.error) throw r.error;
-
-      r = await db.from('galeria_items').insert({
-        nombre:f.name,
-        ruta_archivo:path,
-        tipo:type,
-        titulo:$('caption').value.trim() || f.name.replace(/\.[^.]+$/,''),
-        orden:Math.floor(Date.now()/1000)+ok,
-        publicado:true
-      });
-
-      if(r.error) {
-        await db.storage.from('galeria-cp').remove([path]);
-        throw r.error;
-      }
-
-      ok++;
-
-    } catch(e) {
-      errors.push(f.name+': '+e.message);
-    }
-  }
-
-  $('upload').disabled = false;
-  $('files').value = '';
-
-  msg(
-    'Subidos: '+ok+(errors.length ? '\nErrores:\n'+errors.join('\n') : ''),
-    !!errors.length
-  );
-
-  await gallery();
-};
-
-async function gallery() {
-  const {data,error} = await db.from('galeria_items')
-    .select('*')
-    .order('orden',{ascending:true});
-
-  if(error) {
-    $('gallery-list').textContent = 'Error: '+error.message;
-    return;
-  }
-
-  if(!data.length) {
-    $('gallery-list').textContent = 'Todavía no hay archivos.';
-    return;
-  }
-
-  $('gallery-list').innerHTML = '';
-
-  data.forEach((it,i) => {
-    const pub = db.storage.from('galeria-cp')
-      .getPublicUrl(it.ruta_archivo).data.publicUrl;
-
-    const row = document.createElement('div');
-    row.className = 'item';
-
-    row.innerHTML = `
-      ${it.tipo === 'video'
-        ? `<video class="thumb" src="${pub}" muted></video>`
-        : `<img class="thumb" src="${pub}" alt="">`
-      }
-
-      <div>
-        <h3>${safe(it.nombre)}</h3>
-        <small>${it.tipo} · ${it.publicado ? 'Publicado' : 'Oculto'}</small>
-
-        <label>Título</label>
-        <input id="title-${it.id}" value="${safe(it.titulo)}">
-
-        <div class="item-actions">
-          <button data-save="${it.id}">Guardar título</button>
-
-          <button class="secondary" data-up="${it.id}" ${i===0?'disabled':''}>↑</button>
-
-          <button class="secondary" data-down="${it.id}" ${i===data.length-1?'disabled':''}>↓</button>
-
-          <button class="secondary" data-toggle="${it.id}">
-            ${it.publicado ? 'Ocultar' : 'Publicar'}
-          </button>
-
-          <button class="danger" data-delete="${it.id}">Eliminar</button>
-        </div>
-      </div>
-    `;
-
-    $('gallery-list').appendChild(row);
-  });
-
-  $('gallery-list').querySelectorAll('[data-save]').forEach(b => {
-    b.onclick = async () => {
-      const {error} = await db.from('galeria_items')
-        .update({titulo:$('title-'+b.dataset.save).value})
-        .eq('id',Number(b.dataset.save));
-
-      msg(error ? error.message : 'Título guardado.',!!error);
-      await gallery();
-    };
-  });
-
-  $('gallery-list').querySelectorAll('[data-toggle]').forEach(b => {
-    b.onclick = async () => {
-      const it = data.find(x => x.id === Number(b.dataset.toggle));
-
-      const {error} = await db.from('galeria_items')
-        .update({publicado:!it.publicado})
-        .eq('id',it.id);
-
-      msg(error ? error.message : 'Estado actualizado.',!!error);
-      await gallery();
-    };
-  });
-
-  $('gallery-list').querySelectorAll('[data-delete]').forEach(b => {
-    b.onclick = async () => {
-      const it = data.find(x => x.id === Number(b.dataset.delete));
-
-      if(!confirm('¿Eliminar este archivo?')) return;
-
-      let r = await db.from('galeria_items')
-        .delete()
-        .eq('id',it.id);
-
-      if(r.error) {
-        msg(r.error.message,true);
-        return;
-      }
-
-      r = await db.storage.from('galeria-cp')
-        .remove([it.ruta_archivo]);
-
-      msg(
-        r.error
-          ? 'Registro borrado, pero falló el borrado del archivo: '+r.error.message
-          : 'Archivo eliminado.',
-        !!r.error
-      );
-
-      await gallery();
-    };
-  });
-
-  $('gallery-list').querySelectorAll('[data-up],[data-down]').forEach(b => {
-    b.onclick = async () => {
-      const idx = data.findIndex(
-        x => x.id === Number(b.dataset.up || b.dataset.down)
-      );
-
-      const j = b.hasAttribute('data-up') ? idx-1 : idx+1;
-
-      if(j<0 || j>=data.length) return;
-
-      let a = await db.from('galeria_items')
-        .update({orden:data[j].orden})
-        .eq('id',data[idx].id);
-
-      let c = await db.from('galeria_items')
-        .update({orden:data[idx].orden})
-        .eq('id',data[j].id);
-
-      msg(
-        a.error || c.error
-          ? 'No se pudo cambiar el orden.'
-          : 'Orden actualizado.',
-        !!(a.error || c.error)
-      );
-
-      await gallery();
-    };
-  });
+function notice(t,err=false){
+$('notice').textContent=t;
+$('notice').classList.remove('hidden','error');
+if(err)$('notice').classList.add('error');
 }
 
-async function loadText() {
-  const {data,error} = await db.from('contenido_web')
-    .select('*')
-    .eq('seccion',$('section').value)
-    .maybeSingle();
 
-  if(error) {
-    msg(error.message,true);
-    return;
-  }
-
-  $('text-title').value = data?.titulo || '';
-  $('text-description').value = data?.descripcion || '';
-
-  msg(data ? 'Texto cargado.' : 'No hay texto guardado aún.');
+function safe(s){
+return String(s??'').replace(/[&<>"']/g,c=>({
+'&':'&amp;',
+'<':'&lt;',
+'>':'&gt;',
+'"':'&quot;',
+"'":'&#39;'
+}[c]));
 }
 
-$('load-text').onclick = loadText;
 
-$('save-text').onclick = async () => {
-  const s = $('section').value;
+function showTab(tab){
 
-  const {data,error} = await db.from('contenido_web')
-    .select('id')
-    .eq('seccion',s)
-    .maybeSingle();
+currentTab=tab;
 
-  if(error) {
-    msg(error.message,true);
-    return;
-  }
+document.querySelectorAll('.tab').forEach(x=>x.classList.add('hidden'));
 
-  const r = data
-    ? await db.from('contenido_web')
-        .update({
-          titulo:$('text-title').value,
-          descripcion:$('text-description').value,
-          actualizado_en:new Date().toISOString()
-        })
-        .eq('id',data.id)
-    : await db.from('contenido_web')
-        .insert({
-          seccion:s,
-          titulo:$('text-title').value,
-          descripcion:$('text-description').value
-        });
+document.querySelectorAll('.nav button').forEach(x=>
+x.classList.toggle('active',x.dataset.tab===tab)
+);
 
-  msg(
-    r.error
-      ? r.error.message
-      : 'Texto guardado en la base de datos.',
-    !!r.error
-  );
+$('pageTitle').textContent =
+tab==='inicio'?'Resumen':
+(sections[tab]?.[0]||({portafolio:'Portafolio'}[tab]));
+
+if(tab==='inicio'){
+$('tab-inicio').classList.remove('hidden');
+stats();
+
+}else if(tab==='portafolio'||tab==='trabajos'||tab==='camaras'){
+
+$('tab-media').classList.remove('hidden');
+
+currentMedia=tab;
+$('category').value=tab;
+
+$('mediaHeading').textContent=sections[tab]?.[0]||'Portafolio';
+
+$('mediaHelp').textContent=
+tab==='portafolio'
+?'Fotos y videos que aparecen en la galería principal.':
+tab==='trabajos'
+?'Cada elemento se muestra como una tarjeta en Mis trabajos.':
+'Subí una foto por cámara o lente y usá el título y la descripción para identificarlos.';
+
+loadAssets();
+
+}else{
+
+$('tab-editor').classList.remove('hidden');
+currentSection=tab;
+
+$('editorHeading').textContent=sections[tab][0];
+$('editorHelp').textContent=sections[tab][1];
+
+loadContent();
+}
+}
+
+
+document.querySelectorAll('.nav button').forEach(b=>
+b.onclick=()=>showTab(b.dataset.tab)
+);
+
+
+$('category').onchange=()=>{
+currentMedia=$('category').value;
+loadAssets();
 };
 
-session();
+
+async function stats(){
+
+const {data,error}=await db
+.from('galeria_items')
+.select('id,categoria');
+
+if(error){
+$('stats').textContent=error.message;
+return;
+}
+
+const counts={
+portafolio:0,
+trabajos:0,
+camaras:0
+};
+
+(data||[]).forEach(x=>{
+if(counts[x.categoria]!==undefined)
+counts[x.categoria]++;
+});
+
+$('stats').innerHTML=Object.entries(counts).map(([k,v])=>
+`<span class="stat"><b>${v}</b> ${sections[k][0].toLowerCase()}</span>`
+).join('');
+
+}
+
+
+async function loadAssets(){
+
+const {data,error}=await db
+.from('galeria_items')
+.select('*')
+.eq('categoria',currentMedia)
+.order('orden',{ascending:true});
+
+if(error){
+$('assetList').textContent=error.message;
+return;
+}
+
+if(!data?.length){
+$('assetList').textContent='Todavía no hay elementos en esta sección.';
+return;
+}
+
+$('assetList').innerHTML='';
+
+data.forEach((it,i)=>{
+
+const url=db.storage
+.from('galeria-cp')
+.getPublicUrl(it.ruta_archivo).data.publicUrl;
+
+const el=document.createElement('div');
+el.className='asset';
+
+el.innerHTML=`
+${it.tipo==='video'
+?`<video class="thumb" src="${url}" muted></video>`
+:`<img class="thumb" src="${url}" alt="">`}
+
+<div>
+<h3>${safe(it.nombre)}</h3>
+<small>${it.tipo} · ${it.publicado?'Visible':'Oculto'}</small>
+
+<div class="field">
+<label>Título</label>
+<input id="title-${it.id}" value="${safe(it.titulo)}">
+</div>
+
+<div class="field">
+<label>Descripción</label>
+<input id="desc-${it.id}" value="${safe(it.descripcion||'')}">
+</div>
+
+<div class="asset-actions">
+<button data-save="${it.id}">Guardar</button>
+<button class="alt" data-toggle="${it.id}">
+${it.publicado?'Ocultar':'Mostrar'}
+</button>
+<button class="alt" data-up="${it.id}" ${i===0?'disabled':''}>↑</button>
+<button class="alt" data-down="${it.id}" ${i===data.length-1?'disabled':''}>↓</button>
+<button class="danger" data-delete="${it.id}">Eliminar</button>
+</div>
+</div>
+`;
+
+$('assetList').appendChild(el);
+
+});
+
+
+$('assetList').querySelectorAll('[data-save]').forEach(b=>
+b.onclick=async()=>{
+
+const id=Number(b.dataset.save);
+
+const {error}=await db
+.from('galeria_items')
+.update({
+titulo:$('title-'+id).value,
+descripcion:$('desc-'+id).value
+})
+.eq('id',id);
+
+notice(error?.message||'Elemento actualizado.',!!error);
+loadAssets();
+
+});
+
+
+$('assetList').querySelectorAll('[data-toggle]').forEach(b=>
+b.onclick=async()=>{
+
+const it=data.find(x=>x.id===Number(b.dataset.toggle));
+
+const {error}=await db
+.from('galeria_items')
+.update({publicado:!it.publicado})
+.eq('id',it.id);
+
+notice(error?.message||'Visibilidad actualizada.',!!error);
+loadAssets();
+
+});
+
+
+$('assetList').querySelectorAll('[data-delete]').forEach(b=>
+b.onclick=async()=>{
+
+const it=data.find(x=>x.id===Number(b.dataset.delete));
+
+if(!confirm('¿Eliminar este elemento?'))return;
+
+let r=await db
+.from('galeria_items')
+.delete()
+.eq('id',it.id);
+
+if(r.error){
+notice(r.error.message,true);
+return;
+}
+
+r=await db.storage
+.from('galeria-cp')
+.remove([it.ruta_archivo]);
+
+notice(
+r.error
+?'Registro eliminado; no se pudo borrar el archivo: '+r.error.message
+:'Elemento eliminado.'
+);
+
+loadAssets();
+
+});
+
+
+$('assetList').querySelectorAll('[data-up],[data-down]').forEach(b=>
+b.onclick=async()=>{
+
+const i=data.findIndex(x=>x.id===Number(b.dataset.up||b.dataset.down));
+const j=b.hasAttribute('data-up')?i-1:i+1;
+
+if(j<0||j>=data.length)return;
+
+const a=await db
+.from('galeria_items')
+.update({orden:data[j].orden})
+.eq('id',data[i].id);
+
+const c=await db
+.from('galeria_items')
+.update({orden:data[i].orden})
+.eq('id',data[j].id);
+
+notice(
+a.error?.message||c.error?.message||'Orden actualizado.',
+!!(a.error||c.error)
+);
+
+loadAssets();
+
+});
+
+}
+
+
+$('upload').onclick=async()=>{
+
+const files=[...$('files').files];
+
+if(!files.length){
+notice('Seleccioná al menos un archivo.',true);
+return;
+}
+
+$('upload').disabled=true;
+
+let ok=0;
+let errors=[];
+
+for(const f of files){
+
+try{
+
+const isVideo=f.type.startsWith('video/');
+const type=isVideo?'video':'imagen';
+
+const clean=f.name
+.normalize('NFKD')
+.replace(/[\u0300-\u036f]/g,'')
+.replace(/[^a-zA-Z0-9._-]+/g,'-');
+
+const path=
+Date.now()+'-'+Math.random().toString(36).slice(2,8)+'-'+clean;
+
+let r=await db.storage
+.from('galeria-cp')
+.upload(path,f,{
+cacheControl:'3600',
+upsert:false
+});
+
+if(r.error)throw r.error;
+
+r=await db.from('galeria_items').insert({
+
+nombre:f.name,
+ruta_archivo:path,
+tipo,
+categoria:currentMedia,
+titulo:$('caption').value.trim()||f.name.replace(/\.[^.]+$/,''),
+descripcion:$('assetDescription').value.trim(),
+orden:Math.floor(Date.now()/1000)+ok,
+publicado:true
+
+});
+
+if(r.error){
+await db.storage.from('galeria-cp').remove([path]);
+throw r.error;
+}
+
+ok++;
+
+}catch(e){
+errors.push(f.name+': '+e.message);
+}
+
+}
+
+$('upload').disabled=false;
+$('files').value='';
+
+notice(
+'Subidos: '+ok+
+(errors.length?'\nErrores:\n'+errors.join('\n'):''),
+!!errors.length
+);
+
+$('caption').value='';
+$('assetDescription').value='';
+
+loadAssets();
+
+};
+
+
+async function loadContent(){
+
+const {data,error}=await db
+.from('contenido_web')
+.select('*')
+.eq('seccion',currentSection)
+.maybeSingle();
+
+if(error){
+notice(error.message,true);
+return;
+}
+
+contentRow=data;
+
+$('contentTitle').value=data?.titulo||'';
+$('contentDescription').value=data?.descripcion||'';
+$('contentExtra').value=data?.datos?.extra||'';
+$('contentLink').value=data?.datos?.link||'';
+
+$('currentImage').textContent=
+data?.imagen_url?'Imagen actual guardada.':'';
+
+}
+
+
+$('loadContent').onclick=loadContent;
+
+
+$('saveContent').onclick=async()=>{
+
+let imageUrl=contentRow?.imagen_url||null;
+
+const f=$('contentImage').files[0];
+
+if(f){
+
+const path=
+'contenido/'+currentSection+'-'+Date.now()+'-'+
+f.name.replace(/[^a-zA-Z0-9._-]/g,'-');
+
+const up=await db.storage
+.from('galeria-cp')
+.upload(path,f,{upsert:false});
+
+if(up.error){
+notice(up.error.message,true);
+return;
+}
+
+imageUrl=db.storage
+.from('galeria-cp')
+.getPublicUrl(path).data.publicUrl;
+
+}
+
+
+const payload={
+
+seccion:currentSection,
+titulo:$('contentTitle').value,
+descripcion:$('contentDescription').value,
+imagen_url:imageUrl,
+
+datos:{
+extra:$('contentExtra').value,
+link:$('contentLink').value
+}
+
+};
+
+
+const r=contentRow
+?await db.from('contenido_web').update(payload).eq('id',contentRow.id)
+:await db.from('contenido_web').insert(payload);
+
+if(r.error){
+notice(r.error.message,true);
+return;
+}
+
+notice('Cambios guardados. Ya podés verlos en la página pública.');
+
+$('contentImage').value='';
+loadContent();
+
+};
+
+
+async function start(){
+
+const {data:{session}}=await db.auth.getSession();
+
+if(session&&session.user.id===ALLOWED){
+
+$('login').classList.add('hidden');
+$('app').classList.remove('hidden');
+
+showTab('inicio');
+
+}else if(session){
+
+await db.auth.signOut();
+
+}
+
+}
+
+
+$('loginForm').onsubmit=async e=>{
+
+e.preventDefault();
+
+const {data,error}=await db.auth.signInWithPassword({
+
+email:$('email').value.trim(),
+password:$('password').value
+
+});
+
+if(error||data?.user?.id!==ALLOWED){
+
+$('loginMsg').textContent=
+error?.message||'Esta cuenta no está autorizada.';
+
+$('loginMsg').classList.remove('hidden');
+
+if(data?.user?.id!==ALLOWED)
+await db.auth.signOut();
+
+return;
+
+}
+
+start();
+
+};
+
+
+$('logout').onclick=async()=>{
+await db.auth.signOut();
+location.reload();
+};
+
+
+start();
+
 </script>
-
 </body>
 </html>
